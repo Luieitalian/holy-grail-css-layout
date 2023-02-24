@@ -13,16 +13,8 @@ body {
     height: 100vh;
     grid-template-rows: 60px 1fr;
     grid-template-columns: 80px 1fr;
-    grid-template-areas:
-        "alias-header alias-header"
-        "alias-innergrid alias-innergrid";
 }
 
-.grid-expanded {
-    grid-template-areas:
-        "alias-header alias-header"
-        "alias-nav alias-innergrid";
-}
 
 a {
     cursor: pointer;
@@ -34,6 +26,10 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: #1e4040;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 1;
+    grid-column-end: -1;
 }
 
 header .logo-bars {
@@ -92,11 +88,17 @@ header .links-yt-article .article {
 
 nav {
     grid-area: alias-nav;
-    display: none;
+    z-index: -1;
+    display: flex;
     padding-top: 2rem;
     flex-direction: column;
     align-items: center;
     background-color: white;
+    border-right: 1px solid rgba(0, 0, 0, 0.2);
+    grid-row-start: 2;
+    grid-row-end: -1;
+    grid-column-start: 1;
+    grid-column-end: 2;
 }
 
 .home,
@@ -156,9 +158,12 @@ nav a {
 
 .inner-grid {
     grid-area: alias-innergrid;
-    background-color: rgba(0, 31, 255, 0.2);
     display: grid;
     overflow-y: scroll;
+    grid-row-start: 2;
+    grid-row-end: -1;
+    grid-column-start: 1;
+    grid-column-end: -1;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -183,7 +188,6 @@ aside {
     border-left: 1px solid rgba(0, 0, 0, 0.2);
     border-top: 1px solid rgba(0, 0, 0, 0.2);
 }
-
 footer {
     grid-area: alias-footer;
     background-color: #1e4040;
@@ -194,12 +198,17 @@ footer {
 @media (min-width: 576px) {
     nav {
         display: flex !important;
+        z-index: 2 !important;
+        border-right: none;
     }
 
     .grid {
         grid-template-areas:
             "alias-header alias-header"
             "alias-nav alias-innergrid";
+    }
+    .inner-grid {
+        grid-column-start: 2;
     }
 
     div .logo-bars i {
@@ -212,6 +221,7 @@ footer {
     .inner-grid {
         grid-template-rows: 1fr 1fr;
         grid-template-columns: 50rem 1fr;
+        grid-column-start: 2;
         grid-template-areas:
             "alias-main alias-aside"
             "alias-footer alias-aside";

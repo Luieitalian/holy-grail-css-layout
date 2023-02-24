@@ -1,14 +1,13 @@
+const navbar = document.querySelector('nav');
+navbar.style.zIndex = '-1';
 function toggleNav()
 {
-    if(document.querySelector('nav').style.display === 'flex')
+    if(navbar.style.zIndex === '-1')
     {
-        document.querySelector('.grid').classList.remove('grid-expanded');
-        document.querySelector('nav').style.display = 'none';
+        navbar.style.zIndex = '2';
     }
     else
     {
-        document.querySelector('.grid').classList.add('grid-expanded');
-        document.querySelector('nav').style.display = 'flex';
+        navbar.style.zIndex = '-1';
     }
-    
 }
